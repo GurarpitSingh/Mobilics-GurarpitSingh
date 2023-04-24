@@ -1,3 +1,4 @@
+// Essential Imports
 const express = require('express');
 const app = express();
 require('./db/connection');
@@ -10,22 +11,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.post('/createUser', (req, res) => {
-    console.log('object');
-    try {
-        const user = new User(req.body);
-        user.save();
-        res.status(200).json(user)
+// Endpoint for Creating User (Experimental)
+
+// app.post('/createUser', (req, res) => {
+//     console.log('object');
+//     try {
+//         const user = new User(req.body);
+//         user.save();
+//         res.status(200).json(user)
         
-    } catch (error) {
-        res.json(error)
-    }
-});
+//     } catch (error) {
+//         res.json(error)
+//     }
+// });
+
+// Endpoint for getting all users for Queries 0, 1, 2, 3, 4
 
 app.get('/users:id/page:page/limit:limit', async (req, res) => {
-    console.log(req.params.id);
-    console.log(req.params.page);
-    console.log(req.params.limit);
 
 
     var queryId = req.params.id;
@@ -97,20 +99,19 @@ app.get('/users:id/page:page/limit:limit', async (req, res) => {
               ])
             }
 
-
+            // Returning Users to Client
       users ? res.status(200).json(users) : res.status(404).json({ message: 'No users found' })
 
     
 });
 
+// Test Endpoint 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
 
-
-
-
+// App Listen on Port 3001
 app.listen(3001, () => {
     console.log('Server listening on port 3001');
     }

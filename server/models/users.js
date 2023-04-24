@@ -1,3 +1,4 @@
+// Model for the users collection in the database. This model is used to create a new user in the database and to retrieve a user from the database.
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
